@@ -1,0 +1,275 @@
+/* 既存のCSS (変更なし) */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container .message {
+    text-align: center;
+}
+
+img {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* お便り一覧のテーブル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+    background-color: #e9f0f9;
+}
+
+/* お便り詳細ページ */
+.submission-detail-container {
+    max-width: 900px;
+    padding: 30px;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.detail-item strong {
+    color: #333;
+    display: inline-block;
+    min-width: 100px;
+}
+
+.content-box {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.content-box p {
+    margin: 0;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button.nav-button {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+
+.button.nav-button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.button.back-button {
+    background-color: #6c757d;
+    color: white;
+    border: 1px solid #6c757d;
+}
+
+.button.back-button:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.delete-section {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.button.delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.button.delete-button:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+
+/* --- スマートフォン対応 (お便りリスト) --- */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    /* テーブル要素の表示設定 */
+    table {
+        border: none; /* 全体のテーブルボーダーをなくす */
+        box-shadow: none;
+    }
+    thead { /* ヘッダーは引き続き非表示 */
+        display: none;
+    }
+    tbody {
+        display: block; /* tbodyもブロック要素として */
+    }
+
+    /* 各行 (tr) を個別のカードとして扱う */
+    tr {
+        border: 1px solid #ddd;
+        margin-bottom: 15px; /* 行の間にスペース */
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: block; /* trもブロック要素に */
+        padding: 15px; /* カード内のパディング */
+        background-color: #fff;
+    }
+
+    /* 各セル (td) のスタイル */
+    td {
+        border: none; /* セルのボーダーをなくす */
+        display: flex; /* Flexboxでラベルと値を横並びにする */
+        justify-content: space-between; /* ラベルと値を左右に寄せる */
+        align-items: flex-start; /* 上揃え */
+        padding: 5px 0; /* 上下のパディング */
+        text-align: left; /* テキストは左揃え */
+        word-break: break-word; /* 長い単語の折り返し */
+    }
+
+    /* 各セルにラベルを追加 (疑似要素は使わず、直接ラベル部分をflex itemとして扱う) */
+    td:before {
+        content: attr(data-label) ": "; /* data-label属性の値を表示し、コロンとスペースを追加 */
+        font-weight: bold;
+        color: #555;
+        flex-shrink: 0; /* ラベルが縮まないように */
+        padding-right: 10px; /* ラベルと値の間にスペース */
+        text-align: left;
+    }
+
+    /* 概要部分の調整 */
+    /* 概要はラベルではなく、見出しのようにしたい場合は以下のように調整 */
+    td:nth-of-type(5) { /* 5番目のtd（概要）の表示を調整 */
+        display: block; /* 概要だけはブロック要素に戻す */
+        text-align: left;
+        padding-top: 10px; /* ラベルとの間に少しスペース */
+    }
+    td:nth-of-type(5):before { /* 概要のラベルは非表示にし、見出しのように */
+        content: "概要:";
+        display: block;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    /* 絞り込みフォームの調整 */
+    .form-group label {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+    .form-group select {
+        width: 100%;
+    }
+}

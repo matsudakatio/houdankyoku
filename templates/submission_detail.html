@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お便り詳細 - {{ submission.radio_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container submission-detail-container">
+        <h1>お便り詳細</h1>
+        
+        <div class="detail-item">
+            <strong>ID:</strong> {{ submission.id }}
+        </div>
+        <div class="detail-item">
+            <strong>ラジオネーム:</strong> {{ submission.radio_name }}
+        </div>
+        <div class="detail-item">
+            <strong>カテゴリ:</strong> {{ submission.category }}
+        </div>
+        <div class="detail-item">
+            <strong>投稿日時:</strong> {{ submission.created_at }}
+        </div>
+        <div class="detail-item content-box">
+            <strong>内容:</strong><br>
+            <p>{{ submission.content | replace('\n', '<br>') | safe }}</p> {# 改行をHTMLのbrタグに変換 #}
+        </div>
+
+        <div class="navigation-buttons">
+            {% if prev_id %}
+                <a href="{{ url_for('submission_detail', submission_id=prev_id) }}" class="button nav-button">前の投稿</a>
+            {% endif %}
+            <a href="{{ url_for('admin_dashboard') }}" class="button back-button">一覧に戻る</a>
+            {% if next_id %}
+                <a href="{{ url_for('submission_detail', submission_id=next_id) }}" class="button nav-button">次の投稿</a>
+            {% endif %}
+        </div>
+
+        <div class="delete-section">
+            <form action="{{ url_for('delete_submission', submission_id=submission.id) }}" method="POST" onsubmit="return confirm('このお便りを本当に削除しますか？');">
+                <button type="submit" class="button delete-button">このお便りを削除</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者ページ - お便り一覧</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>管理者ページ - お便り一覧 Ver.1.1</h1>
+
+        <form method="GET" action="{{ url_for('admin_dashboard') }}">
+            <div class="form-group">
+                <label for="category_filter">カテゴリで絞り込み:</label>
+                <select id="category_filter" name="category" onchange="this.form.submit()">
+                    <option value="全て" {% if not selected_category or selected_category == '全て' %}selected{% endif %}>全て</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+
+        {% if submissions %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ラジオネーム</th>
+                        <th>カテゴリ</th>
+                        <th>投稿日時</th>
+                        <th>概要</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sub in submissions %}
+                        <tr onclick="location.href='{{ url_for('submission_detail', submission_id=sub.id) }}'" style="cursor: pointer;">
+                            <td data-label="ID">{{ sub.id }}</td>
+                            <td data-label="ラジオネーム">{{ sub.radio_name }}</td>
+                            <td data-label="カテゴリ">{{ sub.category }}</td>
+                            <td data-label="投稿日時">{{ sub.created_at }}</td>
+                            <td data-label="概要">{{ sub.content | truncate(50) }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>まだお便りはありません。</p>
+        {% endif %}
+    </div>
+</body>
+</html>
